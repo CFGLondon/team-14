@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_camara" android:icon="@android:drawable/ic_menu_camera"
+        <item android:id="@+id/nav_camara" android:icon="@android:drawable/ic_menu_agenda"
             android:title="Manage" />
         <item android:id="@+id/nav_gallery" android:icon="@android:drawable/ic_menu_mapmode"
             android:title="Map" />
-        <item android:id="@+id/nav_slideshow" android:icon="@android:drawable/ic_menu_slideshow"
+        <item android:id="@+id/nav_slideshow" android:icon="@android:drawable/ic_menu_gallery"
             android:title="Charts" />
         <item android:id="@+id/nav_manage" android:icon="@android:drawable/ic_menu_manage"
             android:title="Tools" />
@@ -16,7 +16,7 @@
         <menu>
             <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"
                 android:title="Share" />
-            <item android:id="@+id/nav_send" android:icon="@android:drawable/ic_menu_send"
+            <item android:id="@+id/nav_send" android:icon="@android:drawable/ic_menu_edit"
                 android:title="Submit" />
         </menu>
     </item>
