@@ -1,0 +1,4 @@
+backend/target/cfg-2016/WEB-INF/classes
+backend/target/cfg-2016/WEB-INF/lib
+backend/target
+aws-build-and-deploy-PRODUCTION.sh
