@@ -15,10 +15,11 @@ public class CallMakingService {
 	// alice can make calls in many languages.. see https://www.twilio.com/docs/api/twiml/say for list
 	private static final String CALL_RESPONSE_FORMAT = "<Response><Pause length=\"2\"/><Say voice=\"alice\" language=\"en-GB\">%s</Say></Response>";
 	
+	// initialise the calling service
 	public CallMakingService() {
 		this.client = new TwilioRestClient(TwilioConstants.ACCOUNT_SID, TwilioConstants.AUTH_TOKEN);
 	}
- 
+  // make call to number "to", say text "sayText"
     public String makeCall(String to, String sayText) throws TwilioRestException {
         Account mainAccount = client.getAccount();
         CallFactory callFactory = mainAccount.getCallFactory();
