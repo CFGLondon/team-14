@@ -31,4 +31,14 @@ public class DBService {
 
 		jdbcTemplateObject.update(query, namedParameters);
 	}
+
+	public void storeReport(String latitude, String longitude, String disability,
+			String country, String actionRequired, String comments) {
+		
+		String query = String.format("INSERT INTO Reports (latitude, longitude, disability, country, action_required, comments) "
+				+ "VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
+				 latitude,  longitude,  disability,
+				 country,  actionRequired,  comments);
+		jdbcTemplateObject. update(query, new HashMap<String, String>());
+	}
 }
