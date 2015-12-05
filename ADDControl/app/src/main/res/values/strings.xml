@@ -20,4 +20,5 @@
         completions."
     </string>
     <string name="title_activity_details">Map</string>
+    <string name="title_activity_new_odp">Add New DPO</string>
 </resources>

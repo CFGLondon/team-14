@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.telecom.Call;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class ManageActivity extends AppCompatActivity {
@@ -22,6 +23,18 @@ public class ManageActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 startActivity(new Intent(ManageActivity.this, DetailsActivity.class));
+            }
+        });
+        ((Button) findViewById(R.id.manage_new_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ManageActivity.this, NewODPActivity.class));
+            }
+        });
+        ((Button) findViewById(R.id.manage_home_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
