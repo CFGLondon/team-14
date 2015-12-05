@@ -42,4 +42,14 @@ public class SomeObjectController {
 	public void storeReport(@RequestBody SomeObject someObject) {
 		sampleService.storeSomeObject(someObject);
 	}
+	
+	@RequestMapping(
+			value = "/menu1", 
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_XML_VALUE)
+	public String menu1(HttpServletRequest request, HttpServletResponse response) {
+		String digits = request.getParameter("Digits");
+		return sampleService.getTwiML(digits);
+	}
+	
 }
