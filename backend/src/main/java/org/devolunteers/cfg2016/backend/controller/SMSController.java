@@ -53,5 +53,34 @@ public class SMSController {
 		}
 		return "";
 	}
+	@RequestMapping(value = "/receivesms-foreign", method = RequestMethod.POST)
+	public @ResponseBody String receivesmsForeign(@RequestParam Map<String, String> params) throws TwilioRestException, IOException {
+		
+		if (!dbService.hasSMSFrom(params.get("From"))) {
+			String welcomeSMS = "ADD está aqui para ajudar! \n"
+							  + "Ele vai ajudar a comunidade se você pode nos dizer sobre si mesmo. Você pode por favor diga-nos o que condição ou deficiência que você tem?";
+							  
+			SMSSendingService sms = new SMSSendingService();
+			sms.sendMessage(params.get("From"), welcomeSMS);
+			dbService.initPerson(params.get("From"));
+		} else {
+			
+			int currentStage = dbService.getAndIncrementPersonStage(params.get("From"));
+			if (currentStage == 0) {
+				
+				dbService.getAndIncrementPersonStage(params.get("From"));
+				String thankYouSMS = "Obrigado por compartilhar isso com a gente , a sua voz é apreciado . Sinta-se livre para texto ou ligue para nós em qualquer ponto sobre quaisquer problemas que encontrar . Texto a palavra questão de ir.";
+						  
+				SMSSendingService sms = new SMSSendingService();
+				sms.sendMessage(params.get("From"), thankYouSMS);
+			} else {
+				
+				String issueSMS = "Temos recebido seu feedback, de sua ajuda para difundir o conhecimento é valorizado !";
+				SMSSendingService sms = new SMSSendingService();
+				sms.sendMessage(params.get("From"), issueSMS);
+			}
+		}
+		return "";
+	}
 }
 
