@@ -55,4 +55,13 @@ public class VoiceMenuController {
 		return sampleService.handleSub1(digits);
 	}
 	
+	@RequestMapping(
+			value = "/handle-sub-2", 
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_XML_VALUE)
+	public String handleSub2(HttpServletRequest request, HttpServletResponse response) {
+		String digits = request.getParameter("Digits");
+		return sampleService.handleSub1(digits);
+	}
+	
 }
