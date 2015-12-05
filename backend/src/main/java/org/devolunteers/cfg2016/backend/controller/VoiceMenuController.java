@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.devolunteers.cfg2016.backend.domain.Call;
 import org.devolunteers.cfg2016.backend.services.DBService;
+import org.devolunteers.cfg2016.backend.services.Language;
 import org.devolunteers.cfg2016.backend.services.MenuService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -29,7 +30,7 @@ public class VoiceMenuController {
 			produces = MediaType.APPLICATION_XML_VALUE)
 	public String mainMenu(HttpServletRequest request, HttpServletResponse response) {
 		
-		return menuService.mainMenu();
+		return menuService.mainMenu(Language.PORTUGUESE);
 	}
 	
 	@RequestMapping(

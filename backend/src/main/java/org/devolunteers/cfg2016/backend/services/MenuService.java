@@ -1,5 +1,7 @@
 package org.devolunteers.cfg2016.backend.services;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import javax.sql.DataSource;
 
 import org.devolunteers.cfg2016.backend.domain.SomeObject;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.web.util.HtmlUtils;
 
 import com.twilio.sdk.verbs.Gather;
 import com.twilio.sdk.verbs.Say;
@@ -96,7 +99,16 @@ public class MenuService {
 			for (int i = 0; i < menu1Portuguese.length; i++) {
 				s += "Se você tem " + menu1Portuguese[i] + " pressione " + (i + 1) + ". ";					
 			}
-			gather.append(new Say(s));
+			Say say = new Say("");
+			try {
+				say = new Say(URLEncoder.encode(s, "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			say.setLanguage("pt-BR");
+			say.setVoice("alice");
+			gather.append(say);
 			response.append(gather);
 
 		} catch (TwiMLException e) {
@@ -108,9 +120,9 @@ public class MenuService {
 
 	public String handleMainMenu(String digit, Language lang) {
 		if (lang == Language.PORTUGUESE){
-			return handleMainMenuPortuguese(String digit);
+			return handleMainMenuPortuguese(digit);
 		} else {
-			return handleMainMenu(String digit);
+			return handleMainMenu(digit);
 		}
 	}
 	
@@ -178,8 +190,8 @@ public class MenuService {
 			gather.setNumDigits(1);
 			gather.setMethod("GET");
 			String s = "";
-			for (int i = 0; i < menu2.length; i++) {
-				s += "To report " + menu2[i] + " press " + (i + 1) + ". ";
+			for (int i = 0; i < menu2English.length; i++) {
+				s += "To report " + menu2English[i] + " press " + (i + 1) + ". ";
 			}
 			gather.append(new Say(s));
 			response.append(gather);
