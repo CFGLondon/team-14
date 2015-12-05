@@ -8,6 +8,8 @@
             android:title="Map" />
         <item android:id="@+id/nav_charts" android:icon="@android:drawable/ic_menu_gallery"
             android:title="Charts" />
+        <item android:id="@+id/nav_scatterplot" android:icon="@android:drawable/ic_menu_compass"
+            android:title="Scatterplot" />
         <item android:id="@+id/nav_tools" android:icon="@android:drawable/ic_menu_manage"
             android:title="Tools" />
     </group>

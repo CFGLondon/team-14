@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_map) {
             WebView webView = (WebView) findViewById(R.id.main_webview);
             webView.getSettings().setJavaScriptEnabled(true);
-            webView.loadUrl("http://devolunteers.org/#portfolio");
+            webView.loadUrl("http://devolunteers.org/map-vlad/");
 
         } else if (id == R.id.nav_charts) {
             WebView webView = (WebView) findViewById(R.id.main_webview);
@@ -102,6 +102,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_tools) {
             startActivity(new Intent(this, SettingsActivity.class));
 
+        } else if (id == R.id.nav_scatterplot){
+            WebView webView = (WebView) findViewById(R.id.main_webview);
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.loadUrl("http://devolunteers.org/scatterplot-vlad/");
         } else if (id == R.id.nav_share) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
