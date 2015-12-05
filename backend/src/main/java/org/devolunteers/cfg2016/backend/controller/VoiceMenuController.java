@@ -1,27 +1,17 @@
 package org.devolunteers.cfg2016.backend.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.devolunteers.cfg2016.backend.domain.Call;
-import org.devolunteers.cfg2016.backend.domain.SomeObject;
 import org.devolunteers.cfg2016.backend.services.DBService;
 import org.devolunteers.cfg2016.backend.services.SampleService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.twilio.sdk.verbs.*;
 
 @RestController
 @RequestMapping(value = "/voice-menu")
@@ -80,9 +70,6 @@ public class VoiceMenuController {
 		String fromCountry = request.getParameter("FromCountry");
 		
 		String to = request.getParameter("To");
-		String toCity = request.getParameter("ToCity");
-		String toState = request.getParameter("ToState");
-		String toCountry = request.getParameter("ToCountry");
 		
 		dbService.logCall(new Call(from, to, fromCity, fromState, fromCountry));
 	}
