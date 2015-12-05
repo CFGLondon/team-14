@@ -134,6 +134,7 @@ public class MenuService {
 				s += "To report " + menu2[i] + " press " + (i + 1) + ". ";
 			}
 			gather.append(new Say(s));
+			response.append(gather);
 
 		} catch (TwiMLException e) {
 			e.printStackTrace();
