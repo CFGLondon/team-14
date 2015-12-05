@@ -1,5 +1,5 @@
 package org.devolunteers.cfg2016.backend.controller;
-
+// views to link the menus together and extract data from the call
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +24,7 @@ public class VoiceMenuController {
 	MenuService menuService = (MenuService) dataSourceContext.getBean("menuService");
 	DBService dbService = (DBService) dataSourceContext.getBean("dbService");
 	
+	// when "[URL]/main-menu" is selected call main menu method
 	@RequestMapping(
 			value = "/main-menu", 
 			method = RequestMethod.GET,
@@ -33,7 +34,8 @@ public class VoiceMenuController {
 		return menuService.mainMenu();
 	}
 	
-	
+
+	// when "[URL]/main-menu-foreign" is selected call main menu in Portuguese
 	@RequestMapping(
 			value = "/main-menu-foreign", 
 			method = RequestMethod.GET,
@@ -43,7 +45,8 @@ public class VoiceMenuController {
 		return menuService.mainMenu(Language.PORTUGUESE);
 	}
 	
-	
+	// when "[URL]/handle-main-menu" is selected call corresponding handling method 
+	// in language extracted from the url
 	@RequestMapping(
 			value = "/handle-main-menu", 
 			method = RequestMethod.GET,
@@ -58,7 +61,9 @@ public class VoiceMenuController {
 		else
 			return menuService.handleMainMenu(digits);
 	}
-	
+
+	// when "[URL]/handle-sub-1" is selected call corresponding handling method 
+	// in language extracted from the url
 	@RequestMapping(
 			value = "/handle-sub-1", 
 			method = RequestMethod.GET,
@@ -72,7 +77,9 @@ public class VoiceMenuController {
 		else
 			return menuService.handleSub1(digits, mainMenuChoice);
 	}
-	
+
+	// when "[URL]/handle-sub-2" is selected call corresponding handling method 
+	// in language extracted from the url
 	@RequestMapping(
 			value = "/handle-sub-2", 
 			method = RequestMethod.GET,
@@ -88,6 +95,7 @@ public class VoiceMenuController {
 			return menuService.handleSub2(digits, mainMenuChoice, sub1MenuChoice);
 	}
 	
+	// function to log the data from caller
 	private void logCallFromRequest(HttpServletRequest request) {
 
 		String from = request.getParameter("From");
@@ -100,6 +108,7 @@ public class VoiceMenuController {
 		String toState = request.getParameter("ToState");
 		String toCountry = request.getParameter("ToCountry");
 		
+		// push it to database
 		dbService.logCall(new Call(from, to, fromCity, fromState, fromCountry));
 	}
 	
