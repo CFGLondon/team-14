@@ -7,7 +7,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.devolunteers.cfg2016.backend.domain.Call;
 import org.devolunteers.cfg2016.backend.domain.SomeObject;
+import org.devolunteers.cfg2016.backend.services.DBService;
 import org.devolunteers.cfg2016.backend.services.SampleService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -27,13 +29,26 @@ public class VoiceMenuController {
 	
 	ApplicationContext dataSourceContext = new ClassPathXmlApplicationContext("Beans.xml");
 	SampleService sampleService = (SampleService) dataSourceContext.getBean("sampleService");
+	DBService dbService = (DBService) dataSourceContext.getBean("dbService");
 	
 	@RequestMapping(
 			value = "/main-menu", 
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_XML_VALUE)
 	public String mainMenu(HttpServletRequest request, HttpServletResponse response) {
-		// String digits = request.getParameter("Digits");
+
+		String from = request.getParameter("From");
+		String fromCity = request.getParameter("FromCity");
+		String fromState = request.getParameter("FromState");
+		String fromCountry = request.getParameter("FromCountry");
+		
+		String to = request.getParameter("To");
+		String toCity = request.getParameter("ToCity");
+		String toState = request.getParameter("ToState");
+		String toCountry = request.getParameter("ToCountry");
+		
+		dbService.logCall(new Call(from, to, fromCity, fromState, fromCountry));
+		
 		return sampleService.mainMenu();
 	}
 	
