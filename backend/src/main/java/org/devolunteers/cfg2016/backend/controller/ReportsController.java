@@ -2,12 +2,8 @@ package org.devolunteers.cfg2016.backend.controller;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.devolunteers.cfg2016.backend.domain.Call;
 import org.devolunteers.cfg2016.backend.services.DBService;
-import org.devolunteers.cfg2016.backend.services.SampleService;
+import org.devolunteers.cfg2016.backend.services.MenuService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.MediaType;
@@ -21,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReportsController {
 	
 	ApplicationContext dataSourceContext = new ClassPathXmlApplicationContext("Beans.xml");
-	SampleService sampleService = (SampleService) dataSourceContext.getBean("sampleService");
+	MenuService sampleService = (MenuService) dataSourceContext.getBean("menuService");
 	DBService dbService = (DBService) dataSourceContext.getBean("dbService");
 	
 	@RequestMapping(
