@@ -13,7 +13,7 @@ import com.twilio.sdk.verbs.Say;
 import com.twilio.sdk.verbs.TwiMLException;
 import com.twilio.sdk.verbs.TwiMLResponse;
 
-public class SampleService {
+public class MenuService {
 
 	private NamedParameterJdbcTemplate jdbcTemplateObject;
 
@@ -33,9 +33,10 @@ public class SampleService {
 	}
 
 	String[] menu1 = { "albinism", "visual impairment", "autism",
-			"chronic illness", "intelectual disability", "learning disability", "memory loss"
-			, "physical disability", "mental illness", "speech and language disorder"};
-	String[] menu2 = { "harassment", "school rejection", "inaccessible area"};
+			"chronic illness", "intelectual disability", "learning disability",
+			"memory loss", "physical disability", "mental illness",
+			"speech and language disorder" };
+	String[] menu2 = { "harassment", "school rejection", "inaccessible area" };
 	String[] menu3 = { "yes", "no" };
 
 	static String BASE = "http://devolunteers.org/api/voice-menu";
@@ -52,9 +53,9 @@ public class SampleService {
 			gather.setAction(HANDLE_MAIN_MENU);
 			gather.setNumDigits(1);
 			gather.setMethod("GET");
-			String s="";
-			for (int i=0;i<menu1.length;i++){
-				s+="If you have "+menu1[i]+ " press "+(i+1)+". ";
+			String s = "";
+			for (int i = 0; i < menu1.length; i++) {
+				s += "If you have " + menu1[i] + " press " + (i + 1) + ". ";
 			}
 			gather.append(new Say(s));
 			response.append(gather);
@@ -77,68 +78,48 @@ public class SampleService {
 		}
 		index--;
 		try {
-			if (index<menu1.length) 
-			response.append(new Say("In the main menu you've chosen "
-					+ menu1[index]));
+			if (index < menu1.length)
+				response.append(new Say("In the main menu you've chosen "
+						+ menu1[index]));
 			else {
 				response.append(new Say("No such option, please try again. "));
 				Gather gather = new Gather();
 				gather.setAction(HANDLE_MAIN_MENU);
 				gather.setNumDigits(1);
 				gather.setMethod("GET");
-				String s="";
-				for (int i=0;i<menu1.length;i++){
-					s+="If you have "+menu1[i]+ " press "+(i+1)+". ";
+				String s = "";
+				for (int i = 0; i < menu1.length; i++) {
+					s += "If you have " + menu1[i] + " press " + (i + 1) + ". ";
 				}
 				gather.append(new Say(s));
 
 				return (response.toXML());
-				
+
 			}
-			
-		
-			/*switch (index) {
-			case 1:
-				// push to database that the user is albian
-				response.append(new Say("In the main menu you've chosen "
-						+ index));
-				break;
-			case 2:
-				// store in db that the user is blind
-				response.append(new Say("In the main menu you've chosen "
-						+ index));
-				break;
-			case 3:
-				response.append(new Say("In the main menu you've chosen "
-						+ index));
-				break;
-			case 4:
-				response.append(new Say("In the main menu you've chosen "
-						+ index));
-				break;
-			case 5:
-				response.append(new Say("In the main menu you've chosen "
-						+ index));
-				break;
-			default:
-				Say say6 = new Say("No such option, please try again. ");
-				response.append(say6);
-				Gather gather = new Gather();
-				gather.setAction(HANDLE_MAIN_MENU);
-				gather.setNumDigits(1);
-				gather.setMethod("GET");
-				Say say = new Say(
-						"For albinism, press 1. For blindness choose 2. For wheel-chair press 3."
-								+ "For disability 4 press 4. For disability 5 press 5.");
-				response.append(gather);
-				gather.append(say);
 
-				return (response.toXML());
+			/*
+			 * switch (index) { case 1: // push to database that the user is
+			 * albian response.append(new Say("In the main menu you've chosen "
+			 * + index)); break; case 2: // store in db that the user is blind
+			 * response.append(new Say("In the main menu you've chosen " +
+			 * index)); break; case 3: response.append(new
+			 * Say("In the main menu you've chosen " + index)); break; case 4:
+			 * response.append(new Say("In the main menu you've chosen " +
+			 * index)); break; case 5: response.append(new
+			 * Say("In the main menu you've chosen " + index)); break; default:
+			 * Say say6 = new Say("No such option, please try again. ");
+			 * response.append(say6); Gather gather = new Gather();
+			 * gather.setAction(HANDLE_MAIN_MENU); gather.setNumDigits(1);
+			 * gather.setMethod("GET"); Say say = new Say(
+			 * "For albinism, press 1. For blindness choose 2. For wheel-chair press 3."
+			 * + "For disability 4 press 4. For disability 5 press 5.");
+			 * response.append(gather); gather.append(say);
+			 * 
+			 * return (response.toXML());
+			 * 
+			 * }
+			 */
 
-			}*/
-	
-		
-		
 		} catch (TwiMLException e) {
 			e.printStackTrace();
 		}
@@ -148,9 +129,9 @@ public class SampleService {
 			gather.setAction(HANDLE_SUB_1 + "?mainMenuChoice=" + index);
 			gather.setNumDigits(1);
 			gather.setMethod("GET");
-			String s="";
-			for (int i=0;i<menu2.length;i++){
-				s+="To report "+menu2[i]+ " press "+(i+1)+". ";
+			String s = "";
+			for (int i = 0; i < menu2.length; i++) {
+				s += "To report " + menu2[i] + " press " + (i + 1) + ". ";
 			}
 			gather.append(new Say(s));
 
@@ -165,7 +146,6 @@ public class SampleService {
 
 		TwiMLResponse response = new TwiMLResponse();
 
-		
 		int index = -1;
 		try {
 			index = Integer.parseInt(digit);
@@ -174,61 +154,48 @@ public class SampleService {
 		}
 		index--;
 		try {
-			if (index<menu2.length) 
+			if (index < menu2.length)
 				response.append(new Say("In the main menu you've chosen "
 						+ menu2[index]));
-				else {
-					response.append(new Say("No such option, please try again. "));
-					Gather gather = new Gather();
-					gather.setAction(HANDLE_SUB_2 + "?mainMenuChoice=" + mainMenuChoice
-							+ "&amp;sub1MenuChoice=" + index);
-					gather.setNumDigits(1);
-					gather.setMethod("GET");
-					String s = "";
-					for (int i=0;i<menu2.length;i++){
-						s+="To report "+menu2[i]+ " press "+(i+1)+". ";
-					}
-					gather.append(new Say(s));
-					response.append(gather);
-					return (response.toXML());
-					
-				}
-			
-			/*switch (index) {
-			case 1:
-				response.append(new Say(String.format(
-						"You've chosen %s and then %d", mainMenuChoice, index)));
-				break;
-			case 2:
-				response.append(new Say(String.format(
-						"You've chosen %s and then %d", mainMenuChoice, index)));
-				break;
-			case 3:
-				response.append(new Say(String.format(
-						"You've chosen %s and then %d", mainMenuChoice, index)));
-				break;
-			case 4:
-				response.append(new Say(String.format(
-						"You've chosen %s and then %d", mainMenuChoice, index)));
-				break;
-			case 5:
-				response.append(new Say(String.format(
-						"You've chosen %s and then %d", mainMenuChoice, index)));
-				break;
-			default:
-				Say say6 = new Say("No such option, please try again. ");
-				response.append(say6);
+			else {
+				response.append(new Say("No such option, please try again. "));
 				Gather gather = new Gather();
-				gather.setAction(HANDLE_SUB_1);
+				gather.setAction(HANDLE_SUB_2 + "?mainMenuChoice="
+						+ mainMenuChoice + "&amp;sub1MenuChoice=" + index);
 				gather.setNumDigits(1);
 				gather.setMethod("GET");
-				Say say = new Say(
-						"To report harassment press 1. To report that you ran out of medicine press 2. To report issue 3 press 3."
-								+ " To report issue 4 press 4.To report issue 5 press 5.");
-				gather.append(say);
+				String s = "";
+				for (int i = 0; i < menu2.length; i++) {
+					s += "To report " + menu2[i] + " press " + (i + 1) + ". ";
+				}
+				gather.append(new Say(s));
 				response.append(gather);
+				return (response.toXML());
 
-			}*/
+			}
+
+			/*
+			 * switch (index) { case 1: response.append(new Say(String.format(
+			 * "You've chosen %s and then %d", mainMenuChoice, index))); break;
+			 * case 2: response.append(new Say(String.format(
+			 * "You've chosen %s and then %d", mainMenuChoice, index))); break;
+			 * case 3: response.append(new Say(String.format(
+			 * "You've chosen %s and then %d", mainMenuChoice, index))); break;
+			 * case 4: response.append(new Say(String.format(
+			 * "You've chosen %s and then %d", mainMenuChoice, index))); break;
+			 * case 5: response.append(new Say(String.format(
+			 * "You've chosen %s and then %d", mainMenuChoice, index))); break;
+			 * default: Say say6 = new
+			 * Say("No such option, please try again. "); response.append(say6);
+			 * Gather gather = new Gather(); gather.setAction(HANDLE_SUB_1);
+			 * gather.setNumDigits(1); gather.setMethod("GET"); Say say = new
+			 * Say(
+			 * "To report harassment press 1. To report that you ran out of medicine press 2. To report issue 3 press 3."
+			 * + " To report issue 4 press 4.To report issue 5 press 5.");
+			 * gather.append(say); response.append(gather);
+			 * 
+			 * }
+			 */
 		} catch (TwiMLException e) {
 			e.printStackTrace();
 		}
@@ -267,14 +234,18 @@ public class SampleService {
 				Say say1 = new Say(
 						String.format(
 								"Chose %s then %s then %s.. Thank you, immediate action will be taken.",
-								menu1[Integer.parseInt(mainMenuChoice)-1], menu2[Integer.parseInt(sub1MenuChoice)-1], menu3[index-1]));
+								menu1[Integer.parseInt(mainMenuChoice) - 1],
+								menu2[Integer.parseInt(sub1MenuChoice) - 1],
+								menu3[index - 1]));
 				response.append(say1);
 				break;
 			case 2:
 				Say say2 = new Say(
 						String.format(
 								"Chose %s then %s then %s.. Thank you, immediate action will be taken.",
-								menu1[Integer.parseInt(mainMenuChoice)-1], menu2[Integer.parseInt(sub1MenuChoice)-1], menu3[index-1]));
+								menu1[Integer.parseInt(mainMenuChoice) - 1],
+								menu2[Integer.parseInt(sub1MenuChoice) - 1],
+								menu3[index - 1]));
 				response.append(say2);
 				break;
 			}

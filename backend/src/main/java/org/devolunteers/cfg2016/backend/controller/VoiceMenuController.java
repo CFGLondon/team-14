@@ -1,34 +1,26 @@
 package org.devolunteers.cfg2016.backend.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.devolunteers.cfg2016.backend.domain.Call;
-import org.devolunteers.cfg2016.backend.domain.SomeObject;
 import org.devolunteers.cfg2016.backend.services.DBService;
-import org.devolunteers.cfg2016.backend.services.SampleService;
+import org.devolunteers.cfg2016.backend.services.MenuService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.twilio.sdk.verbs.*;
 
 @RestController
 @RequestMapping(value = "/voice-menu")
 public class VoiceMenuController {
 	
 	ApplicationContext dataSourceContext = new ClassPathXmlApplicationContext("Beans.xml");
-	SampleService sampleService = (SampleService) dataSourceContext.getBean("sampleService");
+	MenuService menuService = (MenuService) dataSourceContext.getBean("menuService");
 	DBService dbService = (DBService) dataSourceContext.getBean("dbService");
 	
 	@RequestMapping(
@@ -37,7 +29,7 @@ public class VoiceMenuController {
 			produces = MediaType.APPLICATION_XML_VALUE)
 	public String mainMenu(HttpServletRequest request, HttpServletResponse response) {
 		
-		return sampleService.mainMenu();
+		return menuService.mainMenu();
 	}
 	
 	@RequestMapping(
@@ -48,7 +40,7 @@ public class VoiceMenuController {
 		logCallFromRequest(request);
 		
 		String digits = request.getParameter("Digits");
-		return sampleService.handleMainMenu(digits);
+		return menuService.handleMainMenu(digits);
 	}
 	
 	@RequestMapping(
@@ -58,7 +50,7 @@ public class VoiceMenuController {
 	public String handleSub1(HttpServletRequest request, HttpServletResponse response) {
 		String digits = request.getParameter("Digits");
 		String mainMenuChoice = request.getParameter("mainMenuChoice");
-		return sampleService.handleSub1(digits, mainMenuChoice);
+		return menuService.handleSub1(digits, mainMenuChoice);
 	}
 	
 	@RequestMapping(
@@ -69,7 +61,7 @@ public class VoiceMenuController {
 		String digits = request.getParameter("Digits");
 		String mainMenuChoice = request.getParameter("mainMenuChoice");
 		String sub1MenuChoice = request.getParameter("sub1MenuChoice");
-		return sampleService.handleSub2(digits, mainMenuChoice, sub1MenuChoice);
+		return menuService.handleSub2(digits, mainMenuChoice, sub1MenuChoice);
 	}
 	
 	private void logCallFromRequest(HttpServletRequest request) {

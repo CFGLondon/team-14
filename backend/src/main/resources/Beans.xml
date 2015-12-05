@@ -17,6 +17,6 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="sampleService" class="org.devolunteers.cfg2016.backend.services.SampleService"></bean>
+	<bean id="menuService" class="org.devolunteers.cfg2016.backend.services.MenuService"></bean>
 
 </beans>
