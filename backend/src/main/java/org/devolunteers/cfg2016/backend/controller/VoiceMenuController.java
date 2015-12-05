@@ -52,7 +52,8 @@ public class VoiceMenuController {
 			produces = MediaType.APPLICATION_XML_VALUE)
 	public String handleSub1(HttpServletRequest request, HttpServletResponse response) {
 		String digits = request.getParameter("Digits");
-		return sampleService.handleSub1(digits);
+		String mainMenuChoice = request.getParameter("mainMenuChoice");
+		return sampleService.handleSub1(digits, mainMenuChoice);
 	}
 	
 	@RequestMapping(
@@ -61,7 +62,9 @@ public class VoiceMenuController {
 			produces = MediaType.APPLICATION_XML_VALUE)
 	public String handleSub2(HttpServletRequest request, HttpServletResponse response) {
 		String digits = request.getParameter("Digits");
-		return sampleService.handleSub1(digits);
+		String mainMenuChoice = request.getParameter("mainMenuChoice");
+		String sub1MenuChoice = request.getParameter("sub1MenuChoice");
+		return sampleService.handleSub2(digits, mainMenuChoice, sub1MenuChoice);
 	}
 	
 }
