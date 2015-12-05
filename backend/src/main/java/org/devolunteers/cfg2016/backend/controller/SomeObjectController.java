@@ -1,6 +1,11 @@
 package org.devolunteers.cfg2016.backend.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.devolunteers.cfg2016.backend.domain.SomeObject;
 import org.devolunteers.cfg2016.backend.services.SampleService;
@@ -10,20 +15,24 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.twilio.sdk.verbs.*;
 
 @RestController
 @RequestMapping(value = "/someObject")
 public class SomeObjectController {
 	
 	ApplicationContext dataSourceContext = new ClassPathXmlApplicationContext("Beans.xml");
-	SampleService reportsService = (SampleService) dataSourceContext.getBean("reportsService");
+	SampleService sampleService = (SampleService) dataSourceContext.getBean("sampleService");
 	
 	@RequestMapping(
 			value = "/allObjects", 
 			method = RequestMethod.GET)
 	public List<SomeObject> allCrimes() {
-		return reportsService.getSomeObjects();
+		return sampleService.getSomeObjects();
 	}
 	
 	@RequestMapping(
@@ -31,6 +40,16 @@ public class SomeObjectController {
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void storeReport(@RequestBody SomeObject someObject) {
-		reportsService.storeSomeObject(someObject);
+		sampleService.storeSomeObject(someObject);
 	}
+	
+	@RequestMapping(
+			value = "/menu1", 
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_XML_VALUE)
+	public String menu1(HttpServletRequest request, HttpServletResponse response) {
+		String digits = request.getParameter("Digits");
+		return sampleService.getTwiML(digits);
+	}
+	
 }
