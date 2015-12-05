@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="issues_array">
+        <item>No Access</item>
+        <item>Discrimination</item>
+        <item>Additional Information Required</item>
+        <item>Unsafe Area</item>
+        <item>Code For Good Is Cool</item>
+    </string-array>
+</resources>

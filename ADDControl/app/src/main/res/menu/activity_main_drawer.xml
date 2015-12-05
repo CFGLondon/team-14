@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_manage" android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Manage DPOs" />
+        <item android:id="@+id/nav_map" android:icon="@android:drawable/ic_menu_mapmode"
+            android:title="Map" />
+        <item android:id="@+id/nav_charts" android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Charts" />
+        <item android:id="@+id/nav_tools" android:icon="@android:drawable/ic_menu_manage"
+            android:title="Tools" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"
+                android:title="Share" />
+            <item android:id="@+id/nav_submit" android:icon="@android:drawable/ic_menu_edit"
+                android:title="Submit" />
+        </menu>
+    </item>
+
+</menu>

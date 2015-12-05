@@ -1,0 +1,150 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:gravity="center_horizontal"
+    android:orientation="vertical" android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.jpmorgan.team14.addcontrol.SubmitActivity">
+
+    <!-- progress -->
+    <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" android:visibility="gone" />
+
+    <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout android:id="@+id/rport_submit_form" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_marginBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textSize="22sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Country: "/>
+                <!-- Country Select -->
+                <Spinner
+                    android:id="@+id/country_spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout android:layout_width="100dp"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView android:id="@+id/latitude" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:hint="Latitute"
+                        android:inputType="numberDecimal" android:maxLines="1"
+                        android:singleLine="true"
+                        android:textSize="22sp"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout android:layout_width="100dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText android:id="@+id/longitude" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:hint="Longitude"
+                        android:imeActionId="@+id/longitude"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:textSize="22sp"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button android:id="@+id/device_location_button" style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="My Location"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Disability: "
+                    android:textSize="22sp"/>
+                <!-- Country Select -->
+                <Spinner
+                    android:id="@+id/disability_spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Issue: "
+                    android:textSize="22sp"/>
+                <!-- Country Select -->
+                <Spinner
+                    android:id="@+id/issue_spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Action Required: "
+                    android:textSize="22sp"/>
+                <!-- Country Select -->
+                <Switch
+                    android:id="@+id/action_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comments: "
+                android:textSize="22sp"/>
+
+            <EditText
+                android:gravity="top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+            <Button android:id="@+id/submit_button" style="?android:textAppearanceSmall"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="22dp" android:text="Submit"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
