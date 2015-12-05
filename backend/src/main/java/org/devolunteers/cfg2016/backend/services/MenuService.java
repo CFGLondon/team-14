@@ -79,7 +79,7 @@ public class MenuService {
 		index--;
 		try {
 			if (index < menu1.length)
-				response.append(new Say("In the main menu you've chosen "
+				response.append(new Say("You chose "
 						+ menu1[index]));
 			else {
 				response.append(new Say("No such option, please try again. "));
@@ -126,7 +126,7 @@ public class MenuService {
 		try {
 			// no destination
 			Gather gather = new Gather();
-			gather.setAction(HANDLE_SUB_1 + "?mainMenuChoice=" + index);
+			gather.setAction(HANDLE_SUB_1 + "?mainMenuChoice=" + (index+1));
 			gather.setNumDigits(1);
 			gather.setMethod("GET");
 			String s = "";
@@ -156,13 +156,13 @@ public class MenuService {
 		index--;
 		try {
 			if (index < menu2.length)
-				response.append(new Say("In the main menu you've chosen "
+				response.append(new Say("You chose "+ menu1[Integer.parseInt(mainMenuChoice)-1]+" then "
 						+ menu2[index]));
 			else {
 				response.append(new Say("No such option, please try again. "));
 				Gather gather = new Gather();
 				gather.setAction(HANDLE_SUB_2 + "?mainMenuChoice="
-						+ mainMenuChoice + "&amp;sub1MenuChoice=" + index);
+						+ mainMenuChoice + "&amp;sub1MenuChoice=" + (index+1));
 				gather.setNumDigits(1);
 				gather.setMethod("GET");
 				String s = "";
@@ -175,28 +175,7 @@ public class MenuService {
 
 			}
 
-			/*
-			 * switch (index) { case 1: response.append(new Say(String.format(
-			 * "You've chosen %s and then %d", mainMenuChoice, index))); break;
-			 * case 2: response.append(new Say(String.format(
-			 * "You've chosen %s and then %d", mainMenuChoice, index))); break;
-			 * case 3: response.append(new Say(String.format(
-			 * "You've chosen %s and then %d", mainMenuChoice, index))); break;
-			 * case 4: response.append(new Say(String.format(
-			 * "You've chosen %s and then %d", mainMenuChoice, index))); break;
-			 * case 5: response.append(new Say(String.format(
-			 * "You've chosen %s and then %d", mainMenuChoice, index))); break;
-			 * default: Say say6 = new
-			 * Say("No such option, please try again. "); response.append(say6);
-			 * Gather gather = new Gather(); gather.setAction(HANDLE_SUB_1);
-			 * gather.setNumDigits(1); gather.setMethod("GET"); Say say = new
-			 * Say(
-			 * "To report harassment press 1. To report that you ran out of medicine press 2. To report issue 3 press 3."
-			 * + " To report issue 4 press 4.To report issue 5 press 5.");
-			 * gather.append(say); response.append(gather);
-			 * 
-			 * }
-			 */
+			
 		} catch (TwiMLException e) {
 			e.printStackTrace();
 		}
@@ -204,7 +183,7 @@ public class MenuService {
 			// no destination
 			Gather gather = new Gather();
 			gather.setAction(HANDLE_SUB_2 + "?mainMenuChoice=" + mainMenuChoice
-					+ "&amp;sub1MenuChoice=" + index);
+					+ "&amp;sub1MenuChoice=" + (index+1));
 			gather.setNumDigits(1);
 			gather.setMethod("GET");
 			Say say = new Say(
@@ -234,19 +213,15 @@ public class MenuService {
 			case 1:
 				Say say1 = new Say(
 						String.format(
-								"Chose %s then %s then %s.. Thank you, immediate action will be taken.",
-								menu1[Integer.parseInt(mainMenuChoice) - 1],
-								menu2[Integer.parseInt(sub1MenuChoice) - 1],
-								menu3[index - 1]));
+								"You reported there is %s that requires immediate action.. Thank you, we will act on it.",
+								menu2[Integer.parseInt(sub1MenuChoice) - 1]));
 				response.append(say1);
 				break;
 			case 2:
 				Say say2 = new Say(
 						String.format(
-								"Chose %s then %s then %s.. Thank you, immediate action will be taken.",
-								menu1[Integer.parseInt(mainMenuChoice) - 1],
-								menu2[Integer.parseInt(sub1MenuChoice) - 1],
-								menu3[index - 1]));
+								"You reported there is %s.. Thank you, your report has been stored.",
+								menu2[Integer.parseInt(sub1MenuChoice) - 1]));
 				response.append(say2);
 				break;
 			}
