@@ -4,7 +4,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan("uk.co.podlubny.guts2016.backend")
+@ComponentScan("org.devolunteers.cfg2016.backend")
 @EnableAutoConfiguration
 public class Application {
 	public static void main(String[] args) {
