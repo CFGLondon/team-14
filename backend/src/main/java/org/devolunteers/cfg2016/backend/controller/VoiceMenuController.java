@@ -52,7 +52,11 @@ public class VoiceMenuController {
 		logCallFromRequest(request);
 		
 		String digits = request.getParameter("Digits");
-		return menuService.handleMainMenu(digits);
+		String language = request.getParameter("language");
+		if (language.equals("portugese"))
+			return menuService.handleMainMenuPortuguese(digits);
+		else
+			return menuService.handleMainMenu(digits);
 	}
 	
 	@RequestMapping(
@@ -62,7 +66,11 @@ public class VoiceMenuController {
 	public String handleSub1(HttpServletRequest request, HttpServletResponse response) {
 		String digits = request.getParameter("Digits");
 		String mainMenuChoice = request.getParameter("mainMenuChoice");
-		return menuService.handleSub1(digits, mainMenuChoice);
+		String language = request.getParameter("language");
+		if (language.equals("portugese"))
+			return menuService.handleSub1Portuguese(digits, mainMenuChoice);
+		else
+			return menuService.handleSub1(digits, mainMenuChoice);
 	}
 	
 	@RequestMapping(
@@ -73,7 +81,11 @@ public class VoiceMenuController {
 		String digits = request.getParameter("Digits");
 		String mainMenuChoice = request.getParameter("mainMenuChoice");
 		String sub1MenuChoice = request.getParameter("sub1MenuChoice");
-		return menuService.handleSub2(digits, mainMenuChoice, sub1MenuChoice);
+		String language = request.getParameter("language");
+		if (language.equals("portugese"))
+			return menuService.handleSub2Portuguese(digits, mainMenuChoice, sub1MenuChoice);
+		else
+			return menuService.handleSub2(digits, mainMenuChoice, sub1MenuChoice);
 	}
 	
 	private void logCallFromRequest(HttpServletRequest request) {

@@ -54,7 +54,7 @@ public class MenuService {
 		try {
 			// no destinationno
 			Gather gather = new Gather();
-			gather.setAction(HANDLE_MAIN_MENU);
+			gather.setAction(HANDLE_MAIN_MENU+"?language=english");
 			gather.setNumDigits(1);
 			gather.setMethod("GET");
 			String s = "";
@@ -79,7 +79,7 @@ public class MenuService {
 		try {
 			// no destinationno
 			Gather gather = new Gather();
-			gather.setAction(HANDLE_MAIN_MENU);
+			gather.setAction(HANDLE_MAIN_MENU+"?language=portugese");
 			gather.setNumDigits(1);
 			gather.setMethod("GET");
 			String s = "";
@@ -131,7 +131,7 @@ public class MenuService {
 			else {
 				response.append(new Say("No such option, please try again. "));
 				Gather gather = new Gather();
-				gather.setAction(HANDLE_MAIN_MENU);
+				gather.setAction(HANDLE_MAIN_MENU+"?language=english");
 				gather.setNumDigits(1);
 				gather.setMethod("GET");
 				String s = "";
@@ -173,7 +173,7 @@ public class MenuService {
 		try {
 			// no destination
 			Gather gather = new Gather();
-			gather.setAction(HANDLE_SUB_1 + "?mainMenuChoice=" + (index+1));
+			gather.setAction(HANDLE_SUB_1+"?language=english" + "&amp;mainMenuChoice=" + (index+1));
 			gather.setNumDigits(1);
 			gather.setMethod("GET");
 			String s = "";
@@ -208,7 +208,7 @@ public String handleMainMenuPortuguese (String digit){
 			else {
 				response.append(new Say("Sem tal opção, por favor, tente novamente. "));
 				Gather gather = new Gather();
-				gather.setAction(HANDLE_MAIN_MENU);
+				gather.setAction(HANDLE_MAIN_MENU+"?language=portugese");
 				gather.setNumDigits(1);
 				gather.setMethod("GET");
 				String s = "";
@@ -250,7 +250,7 @@ public String handleMainMenuPortuguese (String digit){
 		try {
 			// no destination
 			Gather gather = new Gather();
-			gather.setAction(HANDLE_SUB_1 + "?mainMenuChoice=" + (index+1));
+			gather.setAction(HANDLE_SUB_1+"?language=portugese" + "&amp;mainMenuChoice=" + (index+1));
 			gather.setNumDigits(1);
 			gather.setMethod("GET");
 			String s = "";
@@ -290,7 +290,7 @@ public String handleMainMenuPortuguese (String digit){
 			else {
 				response.append(new Say("No such option, please try again. "));
 				Gather gather = new Gather();
-				gather.setAction(HANDLE_SUB_2 + "?mainMenuChoice="
+				gather.setAction(HANDLE_SUB_2+"?language=english" + "&amp;mainMenuChoice="
 						+ mainMenuChoice + "&amp;sub1MenuChoice=" + (index+1));
 				gather.setNumDigits(1);
 				gather.setMethod("GET");
@@ -311,7 +311,7 @@ public String handleMainMenuPortuguese (String digit){
 		try {
 			// no destination
 			Gather gather = new Gather();
-			gather.setAction(HANDLE_SUB_2 + "?mainMenuChoice=" + mainMenuChoice
+			gather.setAction(HANDLE_SUB_2+"?language=english" + "&amp;mainMenuChoice=" + mainMenuChoice
 					+ "&amp;sub1MenuChoice=" + (index+1));
 			gather.setNumDigits(1);
 			gather.setMethod("GET");
@@ -344,7 +344,7 @@ public String handleMainMenuPortuguese (String digit){
 			else {
 				response.append(new Say("No such option, please try again. "));
 				Gather gather = new Gather();
-				gather.setAction(HANDLE_SUB_2 + "?mainMenuChoice="
+				gather.setAction(HANDLE_SUB_2+"?language=portugese" + "&amp;mainMenuChoice="
 						+ mainMenuChoice + "&amp;sub1MenuChoice=" + (index+1));
 				gather.setNumDigits(1);
 				gather.setMethod("GET");
@@ -365,7 +365,7 @@ public String handleMainMenuPortuguese (String digit){
 		try {
 			// no destination
 			Gather gather = new Gather();
-			gather.setAction(HANDLE_SUB_2 + "?mainMenuChoice=" + mainMenuChoice
+			gather.setAction(HANDLE_SUB_2+"?language=portugese" + "&amp;mainMenuChoice=" + mainMenuChoice
 					+ "&amp;sub1MenuChoice=" + (index+1));
 			gather.setNumDigits(1);
 			gather.setMethod("GET");
