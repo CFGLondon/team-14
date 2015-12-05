@@ -30,8 +30,19 @@ public class VoiceMenuController {
 			produces = MediaType.APPLICATION_XML_VALUE)
 	public String mainMenu(HttpServletRequest request, HttpServletResponse response) {
 		
+		return menuService.mainMenu();
+	}
+	
+	
+	@RequestMapping(
+			value = "/main-menu-foreign", 
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_XML_VALUE)
+	public String mainMenuForeign(HttpServletRequest request, HttpServletResponse response) {
+		
 		return menuService.mainMenu(Language.PORTUGUESE);
 	}
+	
 	
 	@RequestMapping(
 			value = "/handle-main-menu", 
