@@ -61,7 +61,7 @@ public class SMSController {
 							  + "Ele vai ajudar a comunidade se você pode nos dizer sobre si mesmo. Você pode por favor diga-nos o que condição ou deficiência que você tem?";
 							  
 			SMSSendingService sms = new SMSSendingService();
-			sms.sendMessage(params.get("From"), welcomeSMS);
+			sms.sendMessageForeign(params.get("From"), welcomeSMS);
 			dbService.initPerson(params.get("From"));
 		} else {
 			
@@ -72,12 +72,12 @@ public class SMSController {
 				String thankYouSMS = "Obrigado por compartilhar isso com a gente , a sua voz é apreciado . Sinta-se livre para texto ou ligue para nós em qualquer ponto sobre quaisquer problemas que encontrar . Texto a palavra questão de ir.";
 						  
 				SMSSendingService sms = new SMSSendingService();
-				sms.sendMessage(params.get("From"), thankYouSMS);
+				sms.sendMessageForeign(params.get("From"), thankYouSMS);
 			} else {
 				
 				String issueSMS = "Temos recebido seu feedback, de sua ajuda para difundir o conhecimento é valorizado !";
 				SMSSendingService sms = new SMSSendingService();
-				sms.sendMessage(params.get("From"), issueSMS);
+				sms.sendMessageForeign(params.get("From"), issueSMS);
 			}
 		}
 		return "";
