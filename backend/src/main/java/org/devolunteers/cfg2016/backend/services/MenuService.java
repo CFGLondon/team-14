@@ -202,20 +202,53 @@ public String handleMainMenuPortuguese (String digit){
 		}
 		index--;
 		try {
-			if (index < menu1Portuguese.length)
-				response.append(new Say("Você escolhe "
-						+ menu1Portuguese[index]));
+			if (index < menu1Portuguese.length){
+				Say say = new Say("");
+				String s= "Você escolhe "
+						+ menu1Portuguese[index];
+				try {
+					say = new Say(URLEncoder.encode(s, "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			
+				say.setLanguage("pt-BR");
+				say.setVoice("alice");
+				response.append(say);
+			}
 			else {
-				response.append(new Say("Sem tal opção, por favor, tente novamente. "));
+				Say say = new Say("");
+				String s= "Sem tal opção, por favor, tente novamente. ";
+				try {
+					say = new Say(URLEncoder.encode(s, "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				say.setLanguage("pt-BR");
+				say.setVoice("alice");
+				response.append(say);
 				Gather gather = new Gather();
 				gather.setAction(HANDLE_MAIN_MENU+"?language=portugese");
 				gather.setNumDigits(1);
 				gather.setMethod("GET");
-				String s = "";
+				s = "";
 				for (int i = 0; i < menu1Portuguese.length; i++) {
 					s += "Se você tem " + menu1Portuguese[i] + " pressione " + (i + 1) + ". ";
 				}
-				gather.append(new Say(s));
+				Say say2 = new Say("");
+				try {
+					say2 = new Say(URLEncoder.encode(s, "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				say2.setLanguage("pt-BR");
+				say2.setVoice("alice");
+				gather.append(say2);
+				response.append(gather);
 
 				return (response.toXML());
 
@@ -257,7 +290,16 @@ public String handleMainMenuPortuguese (String digit){
 			for (int i = 0; i < menu2Portuguese.length; i++) {
 				s += "Para relatar " + menu2Portuguese[i] + " pressione " + (i + 1) + ". ";
 			}
-			gather.append(new Say(s));
+			Say say = new Say("");
+			try {
+				say = new Say(URLEncoder.encode(s, "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			say.setLanguage("pt-BR");
+			say.setVoice("alice");
+			gather.append(say);
 			response.append(gather);
 
 		} catch (TwiMLException e) {
@@ -338,11 +380,32 @@ public String handleMainMenuPortuguese (String digit){
 		}
 		index--;
 		try {
-			if (index < menu2Portuguese.length)
-				response.append(new Say("Você escolhe "+ menu1Portuguese[Integer.parseInt(mainMenuChoice)-1]+" then "
-						+ menu2Portuguese[index]));
+			if (index < menu2Portuguese.length){
+				Say say = new Say("");
+				try {
+					String s = "Você escolhe "+ menu1Portuguese[Integer.parseInt(mainMenuChoice)-1]+" então "
+							+ menu2Portuguese[index];
+					say = new Say(URLEncoder.encode(s, "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+				say.setLanguage("pt-BR");
+				say.setVoice("alice");
+				response.append(say);
+			}
+				
 			else {
-				response.append(new Say("No such option, please try again. "));
+				String s1 = "Sem tal opção , por favor, tente novamente.";
+				Say say1 = new Say("");
+				try {
+					say1 = new Say(URLEncoder.encode(s1, "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				response.append(say1);
 				Gather gather = new Gather();
 				gather.setAction(HANDLE_SUB_2+"?language=portugese" + "&amp;mainMenuChoice="
 						+ mainMenuChoice + "&amp;sub1MenuChoice=" + (index+1));
@@ -352,7 +415,16 @@ public String handleMainMenuPortuguese (String digit){
 				for (int i = 0; i < menu2Portuguese.length; i++) {
 					s += "Para relatar " + menu2Portuguese[i] + " pressione " + (i + 1) + ". ";
 				}
-				gather.append(new Say(s));
+				Say say = new Say("");
+				try {
+					say = new Say(URLEncoder.encode(s, "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				say.setLanguage("pt-BR");
+				say.setVoice("alice");
+				gather.append(say);
 				response.append(gather);
 				return (response.toXML());
 
@@ -369,8 +441,17 @@ public String handleMainMenuPortuguese (String digit){
 					+ "&amp;sub1MenuChoice=" + (index+1));
 			gather.setNumDigits(1);
 			gather.setMethod("GET");
-			Say say = new Say(
-					"A questão requer ação imediata? Se sim, pressione 1. Se não, prima 2.");
+			Say say = new Say("");
+					
+			String s = "A questão requer ação imediata? Se sim, pressione 1. Se não, prima 2.";
+			try {
+				say = new Say(URLEncoder.encode(s, "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			say.setLanguage("pt-BR");
+			say.setVoice("alice");
 			gather.append(say);
 			response.append(gather);
 
@@ -434,17 +515,33 @@ public String handleMainMenuPortuguese (String digit){
 		try {
 			switch (index) {
 			case 1:
-				Say say1 = new Say(
-						String.format(
+				Say say1 = new Say("");
+				String s =	String.format(
 								"Você informou que há %s que exige uma acção imediata... Obrigado, vamos agir sobre ela.",
-								menu2Portuguese[Integer.parseInt(sub1MenuChoice) - 1]));
+								menu2Portuguese[Integer.parseInt(sub1MenuChoice) - 1]);
+				try {
+					say1 = new Say(URLEncoder.encode(s, "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				say1.setLanguage("pt-BR");
+				say1.setVoice("alice");
 				response.append(say1);
 				break;
 			case 2:
-				Say say2 = new Say(
-						String.format(
-								"Você informou que há %s.. Obrigado, seu relatório foi armazenado.",
-								menu2Portuguese[Integer.parseInt(sub1MenuChoice) - 1]));
+				Say say2 = new Say("");
+				String s2 =	String.format(
+						"Você informou que há %s.. Obrigado, seu relatório foi armazenado.",
+						menu2Portuguese[Integer.parseInt(sub1MenuChoice) - 1]);
+				try {
+					say2 = new Say(URLEncoder.encode(s2, "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				say2.setLanguage("pt-BR");
+				say2.setVoice("alice");
 				response.append(say2);
 				break;
 			}
