@@ -26,13 +26,13 @@ import com.twilio.sdk.verbs.*;
 public class SomeObjectController {
 	
 	ApplicationContext dataSourceContext = new ClassPathXmlApplicationContext("Beans.xml");
-	SampleService reportsService = (SampleService) dataSourceContext.getBean("reportsService");
+	SampleService sampleService = (SampleService) dataSourceContext.getBean("sampleService");
 	
 	@RequestMapping(
 			value = "/allObjects", 
 			method = RequestMethod.GET)
 	public List<SomeObject> allCrimes() {
-		return reportsService.getSomeObjects();
+		return sampleService.getSomeObjects();
 	}
 	
 	@RequestMapping(
@@ -40,6 +40,6 @@ public class SomeObjectController {
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void storeReport(@RequestBody SomeObject someObject) {
-		reportsService.storeSomeObject(someObject);
+		sampleService.storeSomeObject(someObject);
 	}
 }
