@@ -39,71 +39,65 @@ public class SampleService {
 		return results;
 	}
 	
-
+	static String BASE = "http://devolunteers.org/api/voice-menu";
+	static String HANDLE_MAIN_MENU = BASE + "/handle-main-menu";
+	static String HANDLE_SUB_1 = BASE + "/handle-sub-1";
 	
-	static String BASEURL="http://devolunteers.org/api/someObject/menu1";
-	
-	public String getTwiML(String digits) {
-		int index;
-        try
-        	{index = Integer.parseInt(digits);}
-        catch (NumberFormatException nfe)
-        	{ index=-1;}
-        
-
-		// @start snippet
-		/* Define Menu */
-		String[] defaultMenu = {"albinism", "wheel-chair", "blidness"};
-
-        Map<String,String[]> menuDefinition = new HashMap<String,String[]>();
-        menuDefinition.put("default", defaultMenu);
-
+	public String mainMenu() { 
 		TwiMLResponse response = new TwiMLResponse();
 
         try {
-			if (index==1){
-		        Say say = new Say("You chose albinism.. It's a condition where you ain't got no pigment.");
-				
-				response.append(say);
-			} else if (index==2){
-				Say say = new Say("You chose wheel chair");
-				
-				SMSSendingService sss;
-				try {
-					sss = new SMSSendingService();
-					sss.sendMessage("+447574155899", "wheel-chair");
-				} catch (TwilioRestException e) {
-					e.printStackTrace();
-				}
-				
-				response.append(say);
-			} else if (index==3){
-				Say say = new Say("You chose blindness");
-				
-				SMSSendingService sss;
-				try {
-					sss = new SMSSendingService();
-					sss.sendMessage("+447574155899", "blidness");
-				} catch (TwilioRestException e) {
-					e.printStackTrace();
-				}
-				
-				response.append(say);
-			} else { 
-				// no destination
-				Gather gather = new Gather();
-				gather.setAction(BASEURL);
-				gather.setNumDigits(1);
-				gather.setMethod("GET");
-				Say say = new Say("For albinism, press 1. For wheel-chair press 2. For Blindness choose 3.");
-				gather.append(say);
-				response.append(gather);
-			}
+        	// no destination
+    		Gather gather = new Gather();
+    		gather.setAction(HANDLE_MAIN_MENU);
+    		gather.setNumDigits(1);
+    		gather.setMethod("GET");
+    		Say say = new Say("For albinism, press 1. For wheel-chair press 2. For Blindness choose 3.");
+    		gather.append(say);
+    		response.append(gather);
 
         } catch (TwiMLException e) {
             e.printStackTrace();
         }
 
         return(response.toXML());
-      }
+	}
+	
+	public String handleMainMenu(String digit) {
+		TwiMLResponse response = new TwiMLResponse();
+		
+		int index = -1;
+        try {index = Integer.parseInt(digit);}
+        catch (NumberFormatException nfe)
+        	{ nfe.printStackTrace();}
+
+        try {
+        	switch(index) {
+	        	case 1:
+	    			// submenu 1
+	    			Gather gather = new Gather();
+	        		gather.setAction(HANDLE_SUB_1);
+	        		gather.setNumDigits(1);
+	        		gather.setMethod("GET");
+	        		Say say = new Say("You are in submenu 1, choose shit..");
+	        		gather.append(say);
+	        		response.append(gather);
+	    			break;
+	    		case 2:
+	    			break;
+	    		case 3:
+	    			break;
+	    		default:
+	    			// unknown choice
+        	}
+        } catch (TwiMLException e) {
+            e.printStackTrace();
+        }
+
+        return(response.toXML());
+	}
+	
+	public String handleSub1(String digit) {
+		return null;
+	}
 }

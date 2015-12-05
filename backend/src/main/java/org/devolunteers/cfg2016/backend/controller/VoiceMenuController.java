@@ -22,34 +22,37 @@ import org.springframework.web.bind.annotation.RestController;
 import com.twilio.sdk.verbs.*;
 
 @RestController
-@RequestMapping(value = "/someObject")
-public class SomeObjectController {
+@RequestMapping(value = "/voice-menu")
+public class VoiceMenuController {
 	
 	ApplicationContext dataSourceContext = new ClassPathXmlApplicationContext("Beans.xml");
 	SampleService sampleService = (SampleService) dataSourceContext.getBean("sampleService");
 	
 	@RequestMapping(
-			value = "/allObjects", 
-			method = RequestMethod.GET)
-	public List<SomeObject> allCrimes() {
-		return sampleService.getSomeObjects();
-	}
-	
-	@RequestMapping(
-			value = "/storeObject",
-			method = RequestMethod.POST,
-			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void storeReport(@RequestBody SomeObject someObject) {
-		sampleService.storeSomeObject(someObject);
-	}
-	
-	@RequestMapping(
-			value = "/menu1", 
+			value = "/main-menu", 
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_XML_VALUE)
-	public String menu1(HttpServletRequest request, HttpServletResponse response) {
+	public String mainMenu(HttpServletRequest request, HttpServletResponse response) {
+		// String digits = request.getParameter("Digits");
+		return sampleService.mainMenu();
+	}
+	
+	@RequestMapping(
+			value = "/handle-main-menu", 
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_XML_VALUE)
+	public String handleMainMenu(HttpServletRequest request, HttpServletResponse response) {
 		String digits = request.getParameter("Digits");
-		return sampleService.getTwiML(digits);
+		return sampleService.handleMainMenu(digits);
+	}
+	
+	@RequestMapping(
+			value = "/handle-sub-1", 
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_XML_VALUE)
+	public String handleSub1(HttpServletRequest request, HttpServletResponse response) {
+		String digits = request.getParameter("Digits");
+		return sampleService.handleSub1(digits);
 	}
 	
 }
