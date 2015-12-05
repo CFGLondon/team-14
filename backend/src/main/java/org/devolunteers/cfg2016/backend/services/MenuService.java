@@ -7,9 +7,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.devolunteers.cfg2016.backend.domain.SomeObject;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.web.util.HtmlUtils;
 
 import com.twilio.sdk.verbs.Gather;
 import com.twilio.sdk.verbs.Say;
@@ -22,17 +20,6 @@ public class MenuService {
 
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplateObject = new NamedParameterJdbcTemplate(dataSource);
-	}
-
-	public void storeSomeObject(SomeObject someObject) {
-
-	}
-
-	public List<SomeObject> getSomeObjects() {
-
-		List<SomeObject> results = new ArrayList<SomeObject>();
-
-		return results;
 	}
 
 	String[] menu1Portuguese = { "albinismo", "deficiência visual", "autismo",
