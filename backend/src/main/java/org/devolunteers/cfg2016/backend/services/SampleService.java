@@ -1,21 +1,14 @@
 package org.devolunteers.cfg2016.backend.services;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.sql.DataSource;
 
 import org.devolunteers.cfg2016.backend.domain.SomeObject;
-import org.devolunteers.cfg2016.backend.twilio.SMSSendingService;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import com.twilio.sdk.TwilioRestException;
-import com.twilio.sdk.verbs.Dial;
 import com.twilio.sdk.verbs.Gather;
-import com.twilio.sdk.verbs.Pause;
-import com.twilio.sdk.verbs.Redirect;
 import com.twilio.sdk.verbs.Say;
 import com.twilio.sdk.verbs.TwiMLException;
 import com.twilio.sdk.verbs.TwiMLResponse;
