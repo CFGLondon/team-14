@@ -22,7 +22,9 @@ public class ManageActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(ManageActivity.this, DetailsActivity.class));
+                Intent intent = new Intent(ManageActivity.this, DetailsActivity.class);
+                intent.putExtra("position", position);
+                startActivity(intent);
             }
         });
         ((Button) findViewById(R.id.manage_new_button)).setOnClickListener(new View.OnClickListener() {

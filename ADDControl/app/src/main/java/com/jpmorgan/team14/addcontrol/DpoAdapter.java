@@ -14,16 +14,20 @@ public class DpoAdapter extends BaseAdapter {
     public String[] dpos;
 
     public DpoAdapter() {
-        dpos = new String[4];
+        dpos = new String[8];
         dpos[0] = "Bangladesh: Dhaka";
-        dpos[1] = "Cambodia: Krasang";
-        dpos[2] = "Sudan: Ruwaba";
-        dpos[3] = "Uganda: Lira";
+        dpos[1] = "Bangladesh: Pabna";
+        dpos[2] = "Bangladesh: Barkhada";
+        dpos[3] = "Cambodia: Krasang";
+        dpos[4] = "Cambodia: Krong";
+        dpos[5] = "Cambodia: Rovieng";
+        dpos[6] = "Sudan: Ruwaba";
+        dpos[7] = "Uganda: Lira";
     }
 
     @Override
     public int getCount() {
-        return 4;
+        return 8;
     }
 
     @Override

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
 
         WebView webView = (WebView) findViewById(R.id.main_webview);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("https://guts.podlubny.co.uk/");
+        webView.loadUrl("http://devolunteers.org");
     }
 
     @Override
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            startActivity(new Intent(this, SettingsActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -90,12 +90,24 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_manage) {
             startActivity(new Intent(this, ManageActivity.class));
         } else if (id == R.id.nav_map) {
+            WebView webView = (WebView) findViewById(R.id.main_webview);
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.loadUrl("http://devolunteers.org/#portfolio");
 
         } else if (id == R.id.nav_charts) {
+            WebView webView = (WebView) findViewById(R.id.main_webview);
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.loadUrl("http://devolunteers.org/graph-vlad/");
 
         } else if (id == R.id.nav_tools) {
+            startActivity(new Intent(this, SettingsActivity.class));
 
         } else if (id == R.id.nav_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "ADD International are working hard towards their goal!");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
 
         } else if (id == R.id.nav_submit) {
             startActivity(new Intent(this, SubmitActivity.class));

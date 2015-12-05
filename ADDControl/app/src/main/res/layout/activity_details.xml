@@ -11,6 +11,7 @@
         android:background="@color/colorPrimary"></LinearLayout>
 
     <TextView
+        android:id="@+id/region"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="26sp"
@@ -24,6 +25,7 @@
         android:layout_marginLeft="26dp">
 
     <TextView
+        android:id="@+id/owner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="22sp"
@@ -36,29 +38,55 @@
         android:text="Number: +447845478626"/>
 
     <TextView
+        android:id="@+id/reps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:text="Representatives: 10"/>
 
     <TextView
+        android:id="@+id/members"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:text="Members: 872"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="22sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Active Reports: "/>
     <TextView
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/reports"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:text="Active Reports: 47"/>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="22sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resolved Reports: "/>
         <TextView
+            android:textColor="@android:color/holo_green_dark"
+            android:id="@+id/resolved"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22sp"
             android:text="Resolved Reports: 38"/>
-
+</LinearLayout>
     </LinearLayout>
 
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
