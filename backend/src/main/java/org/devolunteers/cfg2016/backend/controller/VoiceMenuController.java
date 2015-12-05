@@ -36,18 +36,6 @@ public class VoiceMenuController {
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_XML_VALUE)
 	public String mainMenu(HttpServletRequest request, HttpServletResponse response) {
-
-		String from = request.getParameter("From");
-		String fromCity = request.getParameter("FromCity");
-		String fromState = request.getParameter("FromState");
-		String fromCountry = request.getParameter("FromCountry");
-		
-		String to = request.getParameter("To");
-		String toCity = request.getParameter("ToCity");
-		String toState = request.getParameter("ToState");
-		String toCountry = request.getParameter("ToCountry");
-		
-		dbService.logCall(new Call(from, to, fromCity, fromState, fromCountry));
 		
 		return sampleService.mainMenu();
 	}
@@ -57,6 +45,8 @@ public class VoiceMenuController {
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_XML_VALUE)
 	public String handleMainMenu(HttpServletRequest request, HttpServletResponse response) {
+		logCallFromRequest(request);
+		
 		String digits = request.getParameter("Digits");
 		return sampleService.handleMainMenu(digits);
 	}
@@ -80,6 +70,21 @@ public class VoiceMenuController {
 		String mainMenuChoice = request.getParameter("mainMenuChoice");
 		String sub1MenuChoice = request.getParameter("sub1MenuChoice");
 		return sampleService.handleSub2(digits, mainMenuChoice, sub1MenuChoice);
+	}
+	
+	private void logCallFromRequest(HttpServletRequest request) {
+
+		String from = request.getParameter("From");
+		String fromCity = request.getParameter("FromCity");
+		String fromState = request.getParameter("FromState");
+		String fromCountry = request.getParameter("FromCountry");
+		
+		String to = request.getParameter("To");
+		String toCity = request.getParameter("ToCity");
+		String toState = request.getParameter("ToState");
+		String toCountry = request.getParameter("ToCountry");
+		
+		dbService.logCall(new Call(from, to, fromCity, fromState, fromCountry));
 	}
 	
 }
