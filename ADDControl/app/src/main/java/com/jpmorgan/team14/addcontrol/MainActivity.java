@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
 
         WebView webView = (WebView) findViewById(R.id.main_webview);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("http://devolunteers.org");
+        webView.loadUrl("http://devolunteers.org/map-vlad/");
     }
 
     @Override
