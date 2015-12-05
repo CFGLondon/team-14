@@ -54,7 +54,7 @@ public class SampleService {
 			gather.setMethod("GET");
 			String s="";
 			for (int i=0;i<menu1.length;i++){
-				s+="If you have "+menu1[i+1]+ " press "+(i+1)+". ";
+				s+="If you have "+menu1[i]+ " press "+(i+1)+". ";
 			}
 			gather.append(new Say(s));
 			response.append(gather);
@@ -75,7 +75,7 @@ public class SampleService {
 		} catch (NumberFormatException nfe) {
 			nfe.printStackTrace();
 		}
-
+		index--;
 		try {
 			if (index<menu1.length) 
 			response.append(new Say("In the main menu you've chosen "
@@ -88,7 +88,7 @@ public class SampleService {
 				gather.setMethod("GET");
 				String s="";
 				for (int i=0;i<menu1.length;i++){
-					s+="If you have "+menu1[i+1]+ " press "+(i+1)+". ";
+					s+="If you have "+menu1[i]+ " press "+(i+1)+". ";
 				}
 				gather.append(new Say(s));
 
@@ -150,7 +150,7 @@ public class SampleService {
 			gather.setMethod("GET");
 			String s="";
 			for (int i=0;i<menu2.length;i++){
-				s+="To report "+menu2[i+1]+ " press "+(i+1)+". ";
+				s+="To report "+menu2[i]+ " press "+(i+1)+". ";
 			}
 			gather.append(new Say(s));
 
@@ -165,13 +165,14 @@ public class SampleService {
 
 		TwiMLResponse response = new TwiMLResponse();
 
+		
 		int index = -1;
 		try {
 			index = Integer.parseInt(digit);
 		} catch (NumberFormatException nfe) {
 			nfe.printStackTrace();
 		}
-
+		index--;
 		try {
 			if (index<menu2.length) 
 				response.append(new Say("In the main menu you've chosen "
@@ -185,10 +186,11 @@ public class SampleService {
 					gather.setMethod("GET");
 					String s = "";
 					for (int i=0;i<menu2.length;i++){
-						s+="To report "+menu2[i+1]+ " press "+(i+1)+". ";
+						s+="To report "+menu2[i]+ " press "+(i+1)+". ";
 					}
 					gather.append(new Say(s));
 					response.append(gather);
+					return (response.toXML());
 					
 				}
 			
@@ -265,14 +267,14 @@ public class SampleService {
 				Say say1 = new Say(
 						String.format(
 								"Chose %s then %s then %s.. Thank you, immediate action will be taken.",
-								menu1[Integer.parseInt(mainMenuChoice)], menu2[Integer.parseInt(sub1MenuChoice)], menu3[index]));
+								menu1[Integer.parseInt(mainMenuChoice)-1], menu2[Integer.parseInt(sub1MenuChoice)-1], menu3[index-1]));
 				response.append(say1);
 				break;
 			case 2:
 				Say say2 = new Say(
 						String.format(
 								"Chose %s then %s then %s.. Thank you, immediate action will be taken.",
-								menu1[Integer.parseInt(mainMenuChoice)], menu2[Integer.parseInt(sub1MenuChoice)], menu3[index]));
+								menu1[Integer.parseInt(mainMenuChoice)-1], menu2[Integer.parseInt(sub1MenuChoice)-1], menu3[index-1]));
 				response.append(say2);
 				break;
 			}
